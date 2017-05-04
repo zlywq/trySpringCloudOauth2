@@ -1,0 +1,55 @@
+
+
+csrf 还有些问题，
+    在一个站点登录后，可以访问另一个站点的页面。但是要在另一个站点提交页面，还不行。似乎只能在已经登录的那个提交。
+    不过后来又可以了，看来不稳定。
+    应该没有问题，应该是要先刷一下页面，取到csrf后再点提交按钮。
+
+发现一个奇怪问题。网页访问sprssoWeb2的站点，访问那个取resource的user时，有时候成功，有时候失败。
+    具体是当sprssoWeb2的pom.xml中加入对于sprssoLibWebSec1的依赖就成功，否则就失败，即使sprssoLibWebSec1里面几乎为空。
+    失败是报错unauthorized--Full authentication is required to access this resource。
+    加了--debug对比log发现一点差异，但仍未弄清问题所在。其差异在log前部主要如下。怀疑是某些顺序影响了自动配置。
+        在ok的log中有这些，而fail的log中没有。
+[           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Rejected bean name 'org.springframework.cloud.security.oauth2.client.OAuth2LoadBalancerClientAutoConfiguration': no URL paths identified
+[           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Rejected bean name 'org.springframework.cloud.security.oauth2.proxy.OAuth2ProxyAutoConfiguration$AuthenticationHeaderFilterConfiguration': no URL paths identified
+[           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Rejected bean name 'authenticationHeaderFilter': no URL paths identified
+[           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Rejected bean name 'org.springframework.cloud.security.oauth2.proxy.OAuth2ProxyAutoConfiguration': no URL paths identified
+[           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Rejected bean name 'oauth2TokenRelayFilter': no URL paths identified
+[           main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Rejected bean name 'proxy.auth-org.springframework.cloud.security.oauth2.proxy.ProxyAuthenticationProperties': no URL paths identified
+...
+   OAuth2LoadBalancerClientAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor', 'org.springframework.security.oauth2.client.OAuth2RestTemplate'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor; SearchStrategy: all) found bean 'ribbonInterceptor' (OnBeanCondition)
+   OAuth2ProxyAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'com.netflix.zuul.ZuulFilter', 'org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client', 'org.springframework.boot.autoconfigure.security.SecurityProperties'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+      - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)
+   OAuth2ProxyAutoConfiguration.AuthenticationHeaderFilterConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+
+
+
+
+
+
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\sprssoLogin\target
+java -jar sprssoLogin-1.0-SNAPSHOT.jar
+
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\sprssoOauthRes\target
+java -jar sprssoOauthRes-1.0-SNAPSHOT.jar
+
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb1\target
+java -jar sprssoWeb1-1.0-SNAPSHOT.jar
+
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target
+#java -jar sprssoWeb2-1.0-SNAPSHOT.jar --debug > t1.log 2>&1
+java -jar sprssoWeb2-1.0-SNAPSHOT.jar 
+
+

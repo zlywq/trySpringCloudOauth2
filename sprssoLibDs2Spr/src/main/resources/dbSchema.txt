@@ -1,0 +1,27 @@
+﻿
+/*
+SELECT User, Host, Password FROM mysql.user;
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' IDENTIFIED BY 'aaa' WITH GRANT OPTION; 
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'localhost' IDENTIFIED BY 'aaa' WITH GRANT OPTION; 
+mysql --host=localhost --port=3306 -u user1 -p
+*/
+
+
+
+#DROP DATABASE IF EXISTS sprssoZdemo1;
+CREATE DATABASE sprssoZdemo1 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+use sprssoZdemo1;
+
+CREATE TABLE `Message` (
+  `messageId` BIGINT NOT NULL ,
+  `userId` BIGINT NOT NULL ,
+  `groupId` BIGINT NOT NULL ,
+  `title` varchar(200) NOT NULL ,
+  `content` varchar(1000) NOT NULL,
+  `isDeleted` TINYINT NOT NULL DEFAULT 0,
+  `createTime` INT NOT NULL DEFAULT 0,
+  `updateTime` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`messageId`)
+) ENGINE=InnoDB;
+
+

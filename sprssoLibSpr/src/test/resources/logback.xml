@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyyMMdd_HHmmss.SSS} [%thread] %-5level %logger{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- 
+    if fileNamePattern be set as ./smmpweb/logwarn.%d{yyyyMMdd}.log
+    then real path be in D:\progGreen\spring-tool-suite-3.6.4-2\logs\smmpweb in sts-ide environment 
+        or D:\progGreen\apache-tomcat-7.0.63\bin\smmpweb in tomcat environment 
+    if use ${user.dir}, it be tomcat\bin dir, such as D:\progGreen\apache-tomcat-7.0.63\bin
+    tried about ${user.dir}/../logs/smmpweb/ , it was ok in windows, be D:\progGreen\apache-tomcat-7.0.63\logs\smmpweb .
+    -->
+    <appender name="ge_warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>WARN</level>
+        </filter>
+       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${user.dir}/../logs/smmpweb/logwarn.%d{yyyyMMdd}.log</fileNamePattern>
+         <maxHistory>12</maxHistory>
+       </rollingPolicy> 
+       <encoder>
+            <pattern>%d{yyyyMMdd_HHmmss.SSS} [%thread] %-5level %logger{0} - %msg%n</pattern>
+       </encoder>       
+    </appender>
+    <appender name="ge_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${user.dir}/../logs/smmpweb/loginfo.%d{yyyyMMdd}.log</fileNamePattern>
+         <maxHistory>12</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyyMMdd_HHmmss.SSS} [%thread] %-5level %logger{0} - %msg%n</pattern>
+		</encoder>
+    </appender>   
+    <appender name="ge_debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>DEBUG</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${user.dir}/../logs/smmpweb/logdebug.%d{yyyyMMdd}.log</fileNamePattern>
+         <maxHistory>12</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyyMMdd_HHmmss.SSS} [%thread] %-5level %logger{0} - %msg%n</pattern>
+		</encoder>
+    </appender>
+
+	<!--<logger name="org.hibernate" level="debug"/> -->
+    <logger name="junit" level="debug"/>
+    <logger name="spr2" level="debug"/>
+    <logger name="cmn2" level="debug"/>
+    
+    <!-- 
+		要想控制mybatis的debug时显示的sql语句，此代码OK。debug时能够打印出来。
+		参考 http://stackoverflow.com/questions/21718097/how-to-configure-logback-for-mybatis-to-print-my-sql
+		而如下的不行。
+    <logger name="org.apache.ibatis">
+		<level value="info" />
+	</logger>
+	<logger name="com.ibatis">
+		<level value="info" />
+	</logger>
+	<logger name="java.sql">
+		<level value="info" />
+	</logger>    
+    -->
+    <logger name="spr2.ibatisMapper" level="debug"/>
+    
+	
+    
+    <logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+         
+    <!-- 给root设置了level="info"看来没有，debug的还是能够打印出来 -->
+    <root level="info">
+        <appender-ref ref="console"/>
+     	<appender-ref ref="ge_warn" />
+     	<appender-ref ref="ge_info" />
+     	<appender-ref ref="ge_debug" />
+    </root>
+</configuration>

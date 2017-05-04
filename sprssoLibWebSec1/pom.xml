@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>sprsso.zdemo1</groupId>
+    <artifactId>sprssoTop</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>sprssoLibWebSec1</artifactId>
+  <packaging>jar</packaging>
+
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+
+
+	<dependencies>
+	
+		<dependency>  
+	      <groupId>sprsso.zdemo1</groupId>  
+	      <artifactId>sprssoLibCommon</artifactId>
+	      <version>${thisprojectversion}</version>
+	      <type>jar</type>  
+	    </dependency>  
+	    
+	    
+	    <dependency>  
+	      <groupId>sprsso.zdemo1</groupId>  
+	      <artifactId>sprssoLibWebCommon</artifactId>
+	      <version>${thisprojectversion}</version>
+	      <type>jar</type>  
+	    </dependency>
+	    
+	    
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+
+		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+
+
+<!--
+When using @ConfigurationProperties it is  recommended to add 'spring-boot-configuration-processor' to your classpath to generate configuration metadata 
+ -->
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-configuration-processor</artifactId>
+        	<optional>true</optional>
+        </dependency>
+	</dependencies>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</project>

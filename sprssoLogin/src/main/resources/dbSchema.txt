@@ -1,0 +1,56 @@
+﻿// ref : sprssoLibSpr\src\main\resources\dbSchema.txt
+//ref: sprssoLibDs2Spr\src\main\resources\dbSchema.txt
+
+/*
+SELECT User, Host, Password FROM mysql.user;
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' IDENTIFIED BY 'aaa' WITH GRANT OPTION; 
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'localhost' IDENTIFIED BY 'aaa' WITH GRANT OPTION; 
+mysql --host=localhost --port=3306 -u user1 -p
+*/
+
+
+#DROP DATABASE IF EXISTS sprssoZdemo1;
+CREATE DATABASE sprssoZdemo1 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+use sprssoZdemo1;
+
+
+Drop table  if exists oauth_client_details;
+create table oauth_client_details (
+  client_id VARCHAR(255) PRIMARY KEY,
+  resource_ids VARCHAR(255),
+  client_secret VARCHAR(255),
+  scope VARCHAR(255),
+  authorized_grant_types VARCHAR(255),
+  web_server_redirect_uri VARCHAR(255),
+  authorities VARCHAR(255),
+  access_token_validity INTEGER,
+  refresh_token_validity INTEGER,
+  additional_information TEXT,
+  create_time timestamp default now(),
+  archived tinyint(1) default '0',
+  trusted tinyint(1) default '0',
+  autoapprove VARCHAR (255) default 'false'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+truncate  oauth_client_details;
+insert into oauth_client_details
+(client_id, resource_ids, client_secret, scope, authorized_grant_types,
+web_server_redirect_uri,authorities, access_token_validity,
+refresh_token_validity, additional_information, create_time, archived, trusted)
+values
+('ssoclient','ssoclient-resource', 'ssosecret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
+null,'ROLE_CLIENT,ROLE_USER,ACTUATOR',null,
+null,null, now(), 0, 0),
+('acme','acme-resource', 'acmesecret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
+null,'ROLE_CLIENT,ROLE_USER,ACTUATOR',null,
+null,null, now(), 0, 0),
+('client1','client1-resource', 'client1secret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
+null,'ROLE_CLIENT',null,
+null,null, now(), 0, 0),
+('client2','client2-resource', 'client2secret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
+null,'ROLE_USER',null,
+null,null, now(), 0, 0);
+
+
+
+
