@@ -7,6 +7,7 @@ csrf 还有些问题，
 
 发现一个奇怪问题。网页访问sprssoWeb2的站点，访问那个取resource的user时，有时候成功，有时候失败。
     具体是当sprssoWeb2的pom.xml中加入对于sprssoLibWebSec1的依赖就成功，否则就失败，即使sprssoLibWebSec1里面几乎为空。
+        后来对pom.xml的结构进行了不小的改动，还是没搞定
     失败是报错unauthorized--Full authentication is required to access this resource。
     加了--debug对比log发现一点差异，但仍未弄清问题所在。其差异在log前部主要如下。怀疑是某些顺序影响了自动配置。
         在ok的log中有这些，而fail的log中没有。
@@ -30,22 +31,32 @@ csrf 还有些问题，
 
 
 
-
+---------------------------------------------------------
 
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\sprssoLogin\target
 java -jar sprssoLogin-1.0-SNAPSHOT.jar
 
-
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoLogin
+java -jar sprssoLogin-1.0-SNAPSHOT.jar
+----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\sprssoOauthRes\target
 java -jar sprssoOauthRes-1.0-SNAPSHOT.jar
 
-
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoOauthRes
+java -jar sprssoOauthRes-1.0-SNAPSHOT.jar
+----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb1\target
 java -jar sprssoWeb1-1.0-SNAPSHOT.jar
 
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoWeb1
+java -jar sprssoWeb1-1.0-SNAPSHOT.jar
+----
 
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target

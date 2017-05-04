@@ -44,13 +44,13 @@
 		-->
     </modules>
 
-<!--
+<!-- -->
 	<parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
       <version>1.5.2.RELEASE</version>
     </parent>
--->
+
 
 <!--  
 
@@ -70,19 +70,19 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
         <version>Brixton.M5</version>
         <relativePath/>
     </parent>
--->
+
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-parent</artifactId>
         <version>Dalston.RELEASE</version>
         <relativePath/>
     </parent>
-    
+ -->
 
 
 
     <dependencies>
-<!-- -->
+<!-- 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -90,10 +90,8 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
         <dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot</artifactId>
-				<!-- <version>1.5.2.RELEASE</version>	-->
-				
 		</dependency>
-
+-->
 
 
 <!--
@@ -116,7 +114,7 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
 -->
         
         
-        
+<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -125,20 +123,17 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-            <!--  
-			<version>${springbootversion}</version> 
-			Overriding managed version 1.5.2.RELEASE for spring-boot-starter-actuator
-			-->
         </dependency>
+
+        
+-->
+        
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        
-        
-        
-        
         
         
         
@@ -177,8 +172,6 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
         </dependencies>
     </dependencyManagement>
 
--->
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -192,9 +185,23 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
         </dependencies>
     </dependencyManagement>
 
+-->
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Dalston.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
 
     
-	<!--  -->
+	<!--  
     <repositories>
 		
         <repository>
@@ -223,10 +230,10 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
         </repository>
 		
     </repositories>
-	
+	-->
 
 	<!--  
-	-->
+	
     <pluginRepositories>
         <pluginRepository>
             <id>spring-snapshots</id>
@@ -245,18 +252,22 @@ org.springframework.beans.factory.ObjectProvider 在   Brixton.M5 没有，在Da
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-	
+	-->
 	<!--  
-	
+	-->
 	<build>
 		<plugins>
+			<!--  
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			-->
+			
+			
 		</plugins>
 	</build>
-	-->
+	
 
 
 </project>
