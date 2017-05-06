@@ -1,4 +1,4 @@
-package sprssozdemo1.libSpr.domain;
+package sprssozdemo1.libCommon.domain;
 
 public class Model1 {
 	private long id;// 主键.

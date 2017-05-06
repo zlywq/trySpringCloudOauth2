@@ -14,8 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.service.*;
 
 

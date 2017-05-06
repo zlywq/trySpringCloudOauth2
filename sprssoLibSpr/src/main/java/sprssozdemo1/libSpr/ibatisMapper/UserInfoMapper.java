@@ -6,7 +6,8 @@ import java.util.*;
 
 import org.apache.ibatis.annotations.*;
 
-import sprssozdemo1.libSpr.domain.*;
+import sprssozdemo1.libCommon.domain.UserInfo;
+
 
 
 

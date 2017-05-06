@@ -22,8 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sprssozdemo1.libSpr.domain.*;
+
 import sprssozdemo1.libSpr.service.*;
+import sprssozdemo1.libCommon.domain.BbsPost;
 import sprssozdemo1.libCommon.util.*;
 
 

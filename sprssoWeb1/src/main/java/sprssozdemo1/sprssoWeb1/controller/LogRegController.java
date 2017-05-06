@@ -18,8 +18,8 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.service.*;
 //import sprssozdemo1.libSpr.sprsec.*;
 

@@ -7,7 +7,7 @@
 
 
     
-    <select id="getOnlyDeleted" resultType="sprssozdemo1.sprssoLibDs2Spr.domain.Message">
+    <select id="getOnlyDeleted" resultType="sprssozdemo1.libCommon.domain.Message">
         SELECT * FROM Message WHERE isDeleted=1
     </select>
     

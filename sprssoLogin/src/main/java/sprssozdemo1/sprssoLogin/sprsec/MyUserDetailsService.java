@@ -11,18 +11,16 @@ import org.slf4j.LoggerFactory;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.*;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.Service;
 
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.service.*;
 
 

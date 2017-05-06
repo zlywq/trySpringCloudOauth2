@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring4.context.SpringWebContext;
 
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.service.*;
 
 
@@ -160,9 +160,8 @@ public class PostController {
 	public String update(ModelMap model, BbsPost post, Principal puser) {
 		try{
 			long userIdInSession = Util1.getUserIdInSso(puser);
-			post.setUserId(userIdInSession);
 			
-			postService.update(post);
+			postService.update(post,userIdInSession);
 			model.put(Const.Key_success, true);
 		}catch(Exception e){
 			UtilMsg.retriveErrMsgAndCodeToMap_withLog(e, model);

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.bson.Document;
 
+import sprssozdemo1.libCommon.domain.RestActResultT;
+import sprssozdemo1.libCommon.domain.RestActResultSimple;
+
 public class UtilMsg {
 
 	public static void printMongoDucumentList(List<Document> docMglist){	
@@ -226,6 +229,35 @@ public class UtilMsg {
 		sbMsgDetail.append(Util1.getExceptionStackTrace(e));
 		mapData.put(Const.Key_errMsgDetail, sbMsgDetail.toString());
 	}
+	
+	public static void retriveErrMsgAndCodeToPojo(DemoBaseException e, RestActResultSimple objData){
+		objData.setErrMsg(getErrMsgNotEmpty(e));
+		objData.setErrCode(e.getCode());
+		if (ErrCode.isDevCare(e.getCode())){
+			StringBuffer sbMsgDetail = new StringBuffer(4096);
+			sbMsgDetail.append("\nEnvVars=");
+			sbMsgDetail.append(UtilMsg.getObjectArrayMsg(e.getEnvVars()));
+			sbMsgDetail.append("\nStackTrace=");
+			sbMsgDetail.append(Util1.getExceptionStackTrace(e));
+			objData.setErrMsgDetail(sbMsgDetail.toString());
+		}
+	}
+	public static void retriveErrMsgAndCodeToPojo(Exception e, Object[] envVars,RestActResultSimple objData){
+		if (e instanceof DemoBaseException){
+			DemoBaseException he = (DemoBaseException)e;
+			retriveErrMsgAndCodeToPojo(he,objData);
+			return;
+		}
+		objData.setErrMsg(getErrMsgNotEmpty(e));
+		objData.setErrCode(ErrCode.Dev_Common);
+		StringBuffer sbMsgDetail = new StringBuffer(4096);
+		sbMsgDetail.append("\nEnvVars=");
+		sbMsgDetail.append(UtilMsg.getObjectArrayMsg(envVars));
+		sbMsgDetail.append("\nStackTrace=");
+		sbMsgDetail.append(Util1.getExceptionStackTrace(e));
+		objData.setErrMsgDetail(sbMsgDetail.toString());
+	}
+	
 //	@SuppressWarnings({ "rawtypes" })
 //	public static void retriveErrMsgAndCodeToMap(Exception e, Map mapData){
 //		if (e instanceof DemoBaseException){
@@ -244,7 +276,14 @@ public class UtilMsg {
 	}
 	
 	
-	
+	public static void retriveErrMsgAndCodeToPojo_withLog(Exception e, RestActResultSimple objData){
+		retriveErrMsgAndCodeToPojo(e, null ,objData);
+		DemoBaseException.logAnyErr2(e);
+	}
+	public static void retriveErrMsgAndCodeToPojo_withLog(Exception e, RestActResultSimple objData, Object... envVars){
+		retriveErrMsgAndCodeToPojo(e, envVars ,objData);
+		DemoBaseException.logAnyErr2(e, envVars);
+	}
 	
 	
 	

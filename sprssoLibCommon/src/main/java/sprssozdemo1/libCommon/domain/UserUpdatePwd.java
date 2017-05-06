@@ -1,4 +1,4 @@
-package sprssozdemo1.libSpr.domain;
+package sprssozdemo1.libCommon.domain;
 
 
 

@@ -1,0 +1,30 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: sprcldsrv-provider1    # 项目名称尽量用小写
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+  instance:
+    preferIpAddress: true
+
+druid1:
+  url: jdbc:mysql://127.0.0.1:3306/sprssoZdemo1?useUnicode=true&characterEncoding=utf-8
+  username: user1
+  password: aaa
+  driver-class: com.mysql.jdbc.Driver
+  initial-size: 1
+  min-idle: 1
+  max-active: 20
+  test-on-borrow: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework: INFO
+    sprssozdemo1: DEBUG

@@ -16,9 +16,11 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-
+import sprssozdemo1.libCommon.domain.UserInfo;
+import sprssozdemo1.libCommon.domain.UserLogin;
+import sprssozdemo1.libCommon.domain.UserReg;
+import sprssozdemo1.libCommon.domain.UserUpdatePwd;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.ibatisMapper.*;
 
 

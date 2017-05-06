@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import sprssozdemo1.ClassInTopPackage;
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.Util1;
 
 
@@ -22,12 +23,19 @@ public class ErrorHandleControllerAdvice extends ResponseEntityExceptionHandler 
 	@ResponseBody
 	public ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
 		HttpStatus status = getStatus(request);
-		HashMap<String , Object> data = new HashMap<>();
-		data.put("status", status.value());
-		data.put("errmsg", ex.getMessage());
-		data.put("errstack", Util1.getExceptionStackTrace(ex));
-		//Object obj = new CustomErrorType(status.value(), ex.getMessage());
+//		HashMap<String , Object> data = new HashMap<>();
+//		data.put("status", status.value());
+//		data.put("errMsg", ex.getMessage());
+//		data.put("errstack", Util1.getExceptionStackTrace(ex));
+//		//Object obj = new CustomErrorType(status.value(), ex.getMessage());
+//		return new ResponseEntity<>(data, status);//OK
+		
+		RestActResultForPage data = new RestActResultForPage();
+		data.setStatus(status.value());
+		data.setErrMsg(ex.getMessage());
+		data.setErrstack(Util1.getExceptionStackTrace(ex));
 		return new ResponseEntity<>(data, status);
+		
 	}
 
 	private HttpStatus getStatus(HttpServletRequest request) {

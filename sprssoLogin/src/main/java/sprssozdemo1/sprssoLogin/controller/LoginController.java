@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.service.*;
 import sprssozdemo1.sprssoLogin.sprsec.MyUsernamePasswordAuthenticationToken;
 

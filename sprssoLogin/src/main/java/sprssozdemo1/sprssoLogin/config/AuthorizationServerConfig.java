@@ -63,7 +63,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     	//DataSource dataSource;
     	//clients.jdbc(dataSource);
     	
-    	clients.withClientDetails(clientDetailsService());
+    	clients.withClientDetails(clientDetailsService());//这里的autoApprove在对应表的列上，注意意义是AutoApproveScopes。
     	
 //        clients.inMemory().withClient("ssoclient").secret("ssosecret")
 //                .autoApprove(true)//注意这个如果为true，则/oauth/confirm_access页面不会显示

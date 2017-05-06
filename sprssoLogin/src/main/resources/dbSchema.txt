@@ -35,21 +35,21 @@ create table oauth_client_details (
 truncate  oauth_client_details;
 insert into oauth_client_details
 (client_id, resource_ids, client_secret, scope, authorized_grant_types,
-web_server_redirect_uri,authorities, access_token_validity,
-refresh_token_validity, additional_information, create_time, archived, trusted)
+web_server_redirect_uri,authorities, access_token_validity,refresh_token_validity, additional_information, 
+create_time, archived, trusted, autoapprove)
 values
 ('ssoclient','ssoclient-resource', 'ssosecret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
-null,'ROLE_CLIENT,ROLE_USER,ACTUATOR',null,
-null,null, now(), 0, 0),
+null,'ROLE_CLIENT,ROLE_USER,ACTUATOR',null, null,null, 
+now(), 0, 0, 'read,write,openid'),
 ('acme','acme-resource', 'acmesecret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
-null,'ROLE_CLIENT,ROLE_USER,ACTUATOR',null,
-null,null, now(), 0, 0),
+null,'ROLE_CLIENT,ROLE_USER,ACTUATOR',null, null,null, 
+now(), 0, 0, 'read,write,openid'),
 ('client1','client1-resource', 'client1secret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
-null,'ROLE_CLIENT',null,
-null,null, now(), 0, 0),
+null,'ROLE_CLIENT',null, null,null, 
+now(), 0, 0, ''),
 ('client2','client2-resource', 'client2secret', 'read,write,openid','authorization_code,refresh_token,password,implicit',
-null,'ROLE_USER',null,
-null,null, now(), 0, 0);
+null,'ROLE_USER',null, null,null, 
+now(), 0, 0, '');
 
 
 

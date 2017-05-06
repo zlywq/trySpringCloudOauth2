@@ -7,7 +7,7 @@
 
 
     
-    <select id="getOnlyDeleted" resultType="sprssozdemo1.libSpr.domain.BbsPost">
+    <select id="getOnlyDeleted" resultType="sprssozdemo1.libCommon.domain.BbsPost">
         SELECT * FROM BbsPost WHERE isDeleted=1
     </select>
     

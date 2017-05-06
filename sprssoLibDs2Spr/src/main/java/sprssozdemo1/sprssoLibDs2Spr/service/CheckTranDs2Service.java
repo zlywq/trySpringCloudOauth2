@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 
-
-
+import sprssozdemo1.libCommon.domain.Message;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.sprssoLibDs2Spr.domain.Message;
 import sprssozdemo1.sprssoLibDs2Spr.service.MessageService;
 
 /*

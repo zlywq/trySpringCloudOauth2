@@ -1,4 +1,13 @@
 
+关于oauth2 sso主要参考了 深入实践 Spring Boot20161101 ，以及其他spring官方例子
+关于spring cloud主要参考的是 使用SpringCloud与Docker实战微服务 http://git.oschina.net/itmuch/spring-cloud-book  配套代码：http://git.oschina.net/itmuch/spring-cloud-study 
+
+sprssoLogin 是用于oauth2支持的登录server
+sprssoOauthRes 是oauth2的资源server
+sprssoWeb1 是oauth2的sso的一个简单客户端
+sprssoWeb2 是oauth2的sso的一个简单客户端，并且使用了oauth2的资源server
+
+
 
 csrf 还有些问题，
     在一个站点登录后，可以访问另一个站点的页面。但是要在另一个站点提交页面，还不行。似乎只能在已经登录的那个提交。
@@ -62,5 +71,45 @@ d:
 cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target
 #java -jar sprssoWeb2-1.0-SNAPSHOT.jar --debug > t1.log 2>&1
 java -jar sprssoWeb2-1.0-SNAPSHOT.jar 
+
+--------------
+# etc/hosts : 127.0.0.1 discovery
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldEurekaServerSimple
+java -jar sprcldEurekaServerSimple-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://discovery:8761/
+
+----
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider1
+ java -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1
+# java -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1 > a1.log 2>&1
+http://localhost:8000/
+
+----
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider2Layer
+java -jar sprcldSrvProvider2Layer-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://localhost:8010/
+
+
+
+
+
+遇到一个问题，firefox在自动格式化json数据时，竟然丢失long的精度，像是把long转为double然后四舍五入为long，然后个位的精度丢掉了。
+对比google浏览器，显示原始数据，无此问题。后来在firefox中右键，查看源代码，也是原始数据了。
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

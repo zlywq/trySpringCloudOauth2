@@ -2,25 +2,19 @@ package sprssozdemo1.libSpr.service;
 
 import java.util.*;
 
-import org.apache.ibatis.annotations.Param;
+
 import org.apache.ibatis.session.SqlSession;
-import org.bson.Document;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
-
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.ibatisMapper.*;
 
 
@@ -80,7 +74,7 @@ public class BbsPostService {
 			}
 		}
 		
-		if ( post.getUserId()==0 || Util1.isStringEmpty(post.getTitle()) 
+		if ( Util1.isStringEmpty(post.getTitle())  // || post.getUserId()==0 
 				|| Util1.isStringEmpty(post.getContent()) 
 				){
 			errMsg = "请输入标题，内容等必要字段";
@@ -138,19 +132,23 @@ public class BbsPostService {
 	
 	
 	@Transactional(rollbackFor=Exception.class)
-	public void update(BbsPost post){
+	public void update(BbsPost post, long userIdDoing){
 		checkFields(post,false);
 		
 		if (post.getPostId()==0){
 			utilService.throwEx(ErrCode.Bus_ParamErr,"postId needed", post);
 		}
+		
 		BbsPost oldPost = postMapper.getByIdForUpdate(post.getPostId());
 		if (oldPost == null){
 			utilService.throwEx(ErrCode.Bus_ParamErr,"no this post", post);
 		}
-		if (oldPost.getUserId() != post.getUserId()){
+
+		
+		if (oldPost.getUserId() != userIdDoing){
 //			utilService.throwEx(ErrCode.Bus_Common,"only can edit self post", post);
 		}
+		post.setUserId(oldPost.getUserId());
 		
 		postMapper.update(post);
 	}

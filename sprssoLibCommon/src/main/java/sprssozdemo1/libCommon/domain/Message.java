@@ -1,4 +1,4 @@
-package sprssozdemo1.sprssoLibDs2Spr.domain;
+package sprssozdemo1.libCommon.domain;
 
 import java.io.Serializable;
 

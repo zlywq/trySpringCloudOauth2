@@ -8,10 +8,9 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.*;
 import org.springframework.security.core.*;
 import org.springframework.security.core.userdetails.*;
-import org.springframework.stereotype.Service;
 
+import sprssozdemo1.libCommon.domain.UserInfo;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.service.*;
 
 

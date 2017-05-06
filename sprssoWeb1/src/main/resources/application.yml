@@ -48,4 +48,4 @@ logging:
   level:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
-    sprssozdemo1.sprssoLogin: DEBUG
+    sprssozdemo1: DEBUG

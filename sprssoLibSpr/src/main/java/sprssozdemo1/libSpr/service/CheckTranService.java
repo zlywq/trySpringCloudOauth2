@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 
-
-
+import sprssozdemo1.libCommon.domain.BbsPost;
+import sprssozdemo1.libCommon.domain.UserInfo;
+import sprssozdemo1.libCommon.domain.UserLogin;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 import sprssozdemo1.libSpr.ibatisMapper.*;
 
 @Service

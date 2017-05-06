@@ -14,13 +14,11 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
-
+import sprssozdemo1.libCommon.domain.*;
 import sprssozdemo1.libCommon.util.*;
-import sprssozdemo1.libSpr.domain.*;
 
 import sprssozdemo1.libSpr.service.IdGeneratorLikeSnowflake;
 import sprssozdemo1.libSpr.service.UtilService;
-import sprssozdemo1.sprssoLibDs2Spr.domain.Message;
 import sprssozdemo1.sprssoLibDs2Spr.ibatisMapper.MessageMapper;
 
 

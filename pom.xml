@@ -38,6 +38,11 @@
         <module>sprssoWeb1</module>
         <module>sprssoWeb2</module>
         
+        
+        <module>sprcldEurekaServerSimple</module>
+        <module>sprcldSrvProvider1</module>
+        <module>sprcldSrvProvider2Layer</module>
+        
         <!--
         
         
