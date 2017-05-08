@@ -1,5 +1,5 @@
 server:
-  port: 8011
+  port: 9120
 spring:
   application:
     name: sprcld-prvdres2layer

@@ -153,22 +153,37 @@ d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider1
  java -Djava.net.useSystemProxies=true -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1
 # java -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1 > a1.log 2>&1
-http://localhost:8000/post/getPosts1
+http://localhost:9010/post/getPosts1
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider1
+ java -Djava.net.useSystemProxies=true -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application2
+http://localhost:9011/post/getPosts1
 ----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider2Layer
 java -Djava.net.useSystemProxies=true -jar sprcldSrvProvider2Layer-1.0-SNAPSHOT.jar --spring.config.name=application1
-http://localhost:8010/
+http://localhost:9020/
 ----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes1
  java -Djava.net.useSystemProxies=true -jar sprcldPrvdRes1-1.0-SNAPSHOT.jar --spring.config.name=application1
-http://localhost:8001/post/getPosts1
+http://localhost:9110/post/getPosts1
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes1
+ java -Djava.net.useSystemProxies=true -jar sprcldPrvdRes1-1.0-SNAPSHOT.jar --spring.config.name=application2
+http://localhost:9111/post/getPosts1
 ----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes2Layer
  java -Djava.net.useSystemProxies=true -jar sprcldPrvdRes2Layer-1.0-SNAPSHOT.jar --spring.config.name=application1
-http://localhost:8011/postprov1/getPosts1
+http://localhost:9120/postprov1/getPosts1
+
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes2Layer
+ java -Djava.net.useSystemProxies=true -jar sprcldPrvdRes2Layer-1.0-SNAPSHOT.jar --spring.config.name=application2
+http://localhost:9121/postprov1/getPosts1
 ----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldWeb3

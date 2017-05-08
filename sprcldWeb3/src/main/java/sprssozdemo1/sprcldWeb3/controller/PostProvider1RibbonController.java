@@ -47,7 +47,11 @@ public class PostProvider1RibbonController {
 	@Autowired
 	PostProvider1RibbonService postRibbonService;
 
-
+	@GetMapping("/serviceprocid")
+	public String getServiceProcid() {
+		String s = postRibbonService.getServiceProcid();
+	    return s;
+	}
 	
 	
 	@GetMapping("/postid/{postId}")

@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 9010
 spring:
   application:
     name: sprcldsrv-provider1    # 项目名称尽量用小写

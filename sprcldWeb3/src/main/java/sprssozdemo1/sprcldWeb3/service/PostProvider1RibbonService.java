@@ -22,6 +22,12 @@ public class PostProvider1RibbonService {
 	private RestTemplate restTemplate;
 	
 	private final String urlForProvider1 = "http://sprcldsrv-provider1/" ;//注意这里不用特意指定端口......
+	
+	public String getServiceProcid() {
+		// http://服务提供者的serviceId/url
+		String url = urlForProvider1 + "info1/procid"  ;
+		return this.restTemplate.getForObject(url, String.class);
+	}
 
 	public BbsPost getByPostId(long postId) {
 		// http://服务提供者的serviceId/url

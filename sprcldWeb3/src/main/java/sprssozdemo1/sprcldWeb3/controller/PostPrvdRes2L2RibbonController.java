@@ -47,6 +47,13 @@ public class PostPrvdRes2L2RibbonController {
 	PostPrvdRes2L2RibbonService postRibbonService;
 
 
+
+//	@GetMapping("/procid")
+//	public String getServiceProcid() {
+//		String s = postRibbonService.getServiceProcid();
+//	    return s;
+//	}
+	
 	
 	@GetMapping("/postid/{postId}")
 	public BbsPost getByPostId(@PathVariable Long postId) {

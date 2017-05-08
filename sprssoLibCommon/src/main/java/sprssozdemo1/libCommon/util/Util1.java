@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 import java.io.*;
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.*;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -924,6 +925,13 @@ public class Util1 {
         
 	}
 	
+	static public String getProcessInfoStr(){
+		String name = ManagementFactory.getRuntimeMXBean().getName();    
+//		System.out.println(name);    
+//		String pid = name.split("@")[0];// get pid        
+//		System.out.println("Pid is:" + pid); 
+		return name;
+	}
 	
 	
 }

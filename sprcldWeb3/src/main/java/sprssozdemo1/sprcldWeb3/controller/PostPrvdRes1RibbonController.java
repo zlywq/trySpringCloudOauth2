@@ -47,6 +47,13 @@ public class PostPrvdRes1RibbonController {
 	PostPrvdRes1RibbonService postRibbonService;
 
 
+
+	@GetMapping("/serviceprocid")
+	public String getServiceProcid() {
+		String s = postRibbonService.getServiceProcid();
+	    return s;
+	}
+	
 	
 	@GetMapping("/postid/{postId}")
 	public BbsPost getByPostId(@PathVariable Long postId) {

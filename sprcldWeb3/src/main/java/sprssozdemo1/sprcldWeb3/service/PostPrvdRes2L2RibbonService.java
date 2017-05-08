@@ -34,6 +34,12 @@ public class PostPrvdRes2L2RibbonService {
 	
 	private final String urlForProvider1 = "http://sprcld-prvdres2layer/" ;//注意这里不用特意指定端口......
 
+
+	public String getServiceProcid() {
+		// http://服务提供者的serviceId/url
+		String url = urlForProvider1 + "info1/procid"  ;
+		return this.oAuth2RestTemplate.getForObject(url, String.class);
+	}
 	
 	
 	public BbsPost getByPostId(long postId) {
