@@ -1,0 +1,45 @@
+server:
+  port: 8011
+spring:
+  application:
+    name: sprcld-prvdres2layer
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+
+myOauthServer: 
+  #hostUrl: http://localhost
+  hostUrl: http://localhost:8080
+  #logoutUrl: ${myOauthServer.hostUrl}/signout
+  logoutUrl: ${myOauthServer.hostUrl}/logreg/logout
+  # directly to some1 oauth server /logout FAIL to logout
+security:
+  oauth2:
+    sso:
+        loginPath: /logreg/login
+    client:
+      clientId: acme
+      clientSecret: acmesecret
+      accessTokenUri: ${myOauthServer.hostUrl}/oauth/token
+      userAuthorizationUri: ${myOauthServer.hostUrl}/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      jwt:
+          keyUri: ${myOauthServer.hostUrl}/oauth/token_key
+
+securityconfig:
+  logouturl: /logout
+  logoutsuccssurl: /signout2
+  permitall: /tmp/**,/test**,/tmptest/**,/logreg/reg**
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework: INFO
+    sprssozdemo1: DEBUG

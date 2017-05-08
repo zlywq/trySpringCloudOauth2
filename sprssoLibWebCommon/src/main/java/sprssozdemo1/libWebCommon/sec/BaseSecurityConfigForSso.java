@@ -36,7 +36,7 @@ public abstract class BaseSecurityConfigForSso extends WebSecurityConfigurerAdap
 //    @Autowired
 //    private AuthenticationManager authenticationManager;
     @Autowired
-    private SecuritySettings settings;
+    protected SecuritySettings settings;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -77,7 +77,7 @@ public abstract class BaseSecurityConfigForSso extends WebSecurityConfigurerAdap
 //    }
 
 
-    private CsrfSecurityRequestMatcher csrfSecurityRequestMatcher(){
+    protected CsrfSecurityRequestMatcher csrfSecurityRequestMatcher(){
         CsrfSecurityRequestMatcher csrfSecurityRequestMatcher = new CsrfSecurityRequestMatcher();
         List<String> list = new ArrayList<String>();
         list.add("/rest/");
@@ -85,7 +85,7 @@ public abstract class BaseSecurityConfigForSso extends WebSecurityConfigurerAdap
         return csrfSecurityRequestMatcher;
     }
 
-    private Filter csrfHeaderFilter() {
+    protected Filter csrfHeaderFilter() {
         return new OncePerRequestFilter() {
             @Override
             protected void doFilterInternal(HttpServletRequest request,
@@ -102,7 +102,7 @@ public abstract class BaseSecurityConfigForSso extends WebSecurityConfigurerAdap
         };
     }
 
-    private CsrfTokenRepository csrfTokenRepository() {
+    protected CsrfTokenRepository csrfTokenRepository() {
         HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
         repository.setHeaderName("X-XSRF-TOKEN");
         return repository;

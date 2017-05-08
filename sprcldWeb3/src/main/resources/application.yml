@@ -1,0 +1,56 @@
+server:
+  port: 19030
+spring:
+  application:
+    name: sprcldweb3
+
+eureka:
+  client:
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+
+myOauthServer: 
+  #hostUrl: http://localhost
+  hostUrl: http://localhost:8080
+  #logoutUrl: ${myOauthServer.hostUrl}/signout
+  logoutUrl: ${myOauthServer.hostUrl}/logreg/logout
+  # directly to some1 oauth server /logout FAIL to logout
+security:
+  oauth2:
+    sso:
+        loginPath: /logreg/login
+    client:
+      clientId: acme
+      clientSecret: acmesecret
+      accessTokenUri: ${myOauthServer.hostUrl}/oauth/token
+      userAuthorizationUri: ${myOauthServer.hostUrl}/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      jwt:
+          keyUri: ${myOauthServer.hostUrl}/oauth/token_key
+
+securityconfig:
+  logouturl: /logout
+  logoutsuccssurl: /signout2
+  permitall: /tmp/**,/test**,/tmptest/**,/logreg/reg**
+
+druid1:
+  url: jdbc:mysql://127.0.0.1:3306/sprssoZdemo1?useUnicode=true&characterEncoding=utf-8
+  username: user1
+  password: aaa
+  driver-class: com.mysql.jdbc.Driver
+  initial-size: 1
+  min-idle: 1
+  max-active: 20
+  test-on-borrow: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework: INFO
+    sprssozdemo1: DEBUG

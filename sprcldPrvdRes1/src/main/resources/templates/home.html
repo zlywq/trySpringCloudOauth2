@@ -1,0 +1,125 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	>
+	
+	<head>
+		<meta charset="utf-8"/>
+		<title>spring cloud PrvdRes1 Home</title>
+	</head> 
+	<body>
+	
+	
+	<div th:if="${srvTimeStr}" >
+		srvTimeStr:	<span th:text="${srvTimeStr}" ></span>
+	</div>
+	<div th:if="${username}" >
+		username:	<span th:text="${username}" ></span>
+	</div>
+	
+
+	<P><a href="/throwerr0">/throwerr0</a></P>
+	
+
+	
+	<br /><a href="/post/getPosts1">rest getPosts1</a>
+	<br /><a href="/post/getPosts2">rest getPosts2</a>
+	
+	<br /><a href="/post/instance-info">rest instance-info</a>
+	
+	<br /><a href="/post/postid/{postId}">rest /postid/{postId}</a>
+	<br /><a href="/post/postid2/{postId}">rest /postid2/{postId}</a>
+	
+	<br /><a href="/post/getById1?postId=111">//rest getById1</a>
+	<br /><a href="/post/getById2?postId=111">//rest getById2</a>
+
+	<div>
+	    <h2>insert post ByForm</h2>
+		<form  action="/post/insertByForm" method="POST" target="_blank">
+			<input type="hidden" th_name="${_csrf.parameterName}" th_value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>userId:</td><td><input type='text' name='userId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="insert post ByForm"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	<div>
+	    <h2>rest insert post but can not run in this form</h2>
+		<form  action="/post/insertByJson" method="POST" target="_blank">
+			<input type="hidden" th_name="${_csrf.parameterName}" th_value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>userId:</td><td><input type='text' name='userId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="rest insert post but can not run in this form"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	<div>
+	    <h2>udpate post ByForm</h2>
+		<form  action="/post/updateByForm" method="POST" target="_blank">
+			<input type="hidden" th_name="${_csrf.parameterName}" th_value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="post updateByForm"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	
+	<div>
+	    <h2>delete post ByForm</h2>
+		<form  action="/post/deleteByForm" method="POST" target="_blank">
+			<input type="hidden" th_name="${_csrf.parameterName}" th_value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="post deleteByForm"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	<br />
+
+	<br/>
+	
+	
+	
+	
+	
+	<hr/>
+	
+	
+	
+	
+	
+	
+	<div>
+	<h3>actuator</h3>
+
+	<br /><a href="actuator/autoconfig">autoconfig</a>
+<br /><a href="actuator/configprops">configprops</a>
+<br /><a href="actuator/beans">beans</a>
+<br /><a href="actuator/dump">dump</a>
+<br /><a href="actuator/env">env</a>
+<br /><a href="actuator/env/{name}">env/{name}</a>
+<br /><a href="actuator/health">health</a>
+<br /><a href="actuator/info">info</a>
+<br /><a href="actuator/mappings">mappings</a>
+<br /><a href="actuator/metrics">metrics</a>
+<br /><a href="actuator/metrics/{name}">metrics/{name}</a>
+<br /><a href="actuator/shutdown">shutdown</a>
+<br /><a href="actuator/trace">trace</a>
+	
+	</div>
+	
+	
+	</body>
+</html>

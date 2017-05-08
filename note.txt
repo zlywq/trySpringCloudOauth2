@@ -7,12 +7,11 @@ sprssoOauthRes 是oauth2的资源server
 sprssoWeb1 是oauth2的sso的一个简单客户端
 sprssoWeb2 是oauth2的sso的一个简单客户端，并且使用了oauth2的资源server
 
+sprcldSrvProvider1 是没有oauth保护的一个微服务。sprcldSrvProvider2Layer一方面使用前者的微服务，一方面提供自己的微服务。
+sprcldPrvdRes1、sprcldPrvdRes2Layer分别与sprcldSrvProvider1、sprcldSrvProvider2Layer相比，加了oauth的保护，以oauth2 resource server的方式。并且没有sso的客户端，这样，目前不能直接作为web站点访问，只能在其他web站点间接访问。在获取到某些token后，也可以考虑使用curl来访问。
+sprcldWeb3作为一个普通的sso的web站点，在内部调用sprcldPrvdRes1、sprcldPrvdRes2Layer提供的由oauth保护的rest api。
+    sprcldWeb3也调用了sprcldSrvProvider1，作为某种示例。
 
-
-csrf 还有些问题，
-    在一个站点登录后，可以访问另一个站点的页面。但是要在另一个站点提交页面，还不行。似乎只能在已经登录的那个提交。
-    不过后来又可以了，看来不稳定。
-    应该没有问题，应该是要先刷一下页面，取到csrf后再点提交按钮。
 
 发现一个奇怪问题。网页访问sprssoWeb2的站点，访问那个取resource的user时，有时候成功，有时候失败。
     具体是当sprssoWeb2的pom.xml中加入对于sprssoLibWebSec1的依赖就成功，否则就失败，即使sprssoLibWebSec1里面几乎为空。
@@ -38,40 +37,110 @@ csrf 还有些问题，
 
 
 
+---------------------------------------------------------
 
 
 ---------------------------------------------------------
-
 d:
-cd D:\zly2\try\trySprBoot\trySprSso\sprssoLogin\target
-java -jar sprssoLogin-1.0-SNAPSHOT.jar
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoLogin
+del sprssoLogin-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoLogin\target\sprssoLogin-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoLogin\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoOauthRes
+del sprssoOauthRes-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoOauthRes\target\sprssoOauthRes-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoOauthRes\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoWeb1
+del sprssoWeb1-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoWeb1\target\sprssoWeb1-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoWeb1\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoWeb2
+del sprssoWeb2-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target\sprssoWeb2-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider1
+del sprcldSrvProvider1-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldSrvProvider1\target\sprcldSrvProvider1-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldSrvProvider1\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider2Layer
+del sprcldSrvProvider2Layer-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldSrvProvider2Layer\target\sprcldSrvProvider2Layer-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldSrvProvider2Layer\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes1
+del sprcldPrvdRes1-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldPrvdRes1\target\sprcldPrvdRes1-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldPrvdRes1\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes2Layer
+del sprcldPrvdRes2Layer-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldPrvdRes2Layer\target\sprcldPrvdRes2Layer-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldPrvdRes2Layer\target\classes\application.yml .\application1.yml
+dir
+--
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldWeb3
+del sprcldWeb3-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldWeb3\target\sprcldWeb3-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldWeb3\target\classes\application.yml .\application1.yml
+dir
+--
+//sprcldEurekaServerSimple
 
+
+--------------------------
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoLogin
 java -jar sprssoLogin-1.0-SNAPSHOT.jar
+http://localhost:8080/
 ----
-d:
-cd D:\zly2\try\trySprBoot\trySprSso\sprssoOauthRes\target
-java -jar sprssoOauthRes-1.0-SNAPSHOT.jar
-
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoOauthRes
-java -jar sprssoOauthRes-1.0-SNAPSHOT.jar
+# java -jar sprssoOauthRes-1.0-SNAPSHOT.jar
+java -Djava.net.useSystemProxies=true -jar sprssoOauthRes-1.0-SNAPSHOT.jar
+http://localhost:8083/
 ----
-d:
-cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb1\target
-java -jar sprssoWeb1-1.0-SNAPSHOT.jar
-
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoWeb1
-java -jar sprssoWeb1-1.0-SNAPSHOT.jar
+# java -jar sprssoWeb1-1.0-SNAPSHOT.jar
+java -Djava.net.useSystemProxies=true -jar sprssoWeb1-1.0-SNAPSHOT.jar
+http://localhost:18080/
 ----
-
 d:
-cd D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target
-#java -jar sprssoWeb2-1.0-SNAPSHOT.jar --debug > t1.log 2>&1
-java -jar sprssoWeb2-1.0-SNAPSHOT.jar 
-
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoWeb2
+# java -jar sprssoWeb2-1.0-SNAPSHOT.jar --debug > t1.log 2>&1
+#X java -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8888 -jar sprssoWeb2-1.0-SNAPSHOT.jar 
+#X java -jar sprssoWeb2-1.0-SNAPSHOT.jar --http.proxyHost=127.0.0.1 --http.proxyPort=8888
+java -Djava.net.useSystemProxies=true -jar sprssoWeb2-1.0-SNAPSHOT.jar 
+http://localhost:18081/
 --------------
 # etc/hosts : 127.0.0.1 discovery
 d:
@@ -82,18 +151,30 @@ http://discovery:8761/
 ----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider1
- java -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1
+ java -Djava.net.useSystemProxies=true -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1
 # java -jar sprcldSrvProvider1-1.0-SNAPSHOT.jar --spring.config.name=application1 > a1.log 2>&1
-http://localhost:8000/
-
+http://localhost:8000/post/getPosts1
 ----
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider2Layer
-java -jar sprcldSrvProvider2Layer-1.0-SNAPSHOT.jar --spring.config.name=application1
+java -Djava.net.useSystemProxies=true -jar sprcldSrvProvider2Layer-1.0-SNAPSHOT.jar --spring.config.name=application1
 http://localhost:8010/
-
-
-
+----
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes1
+ java -Djava.net.useSystemProxies=true -jar sprcldPrvdRes1-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://localhost:8001/post/getPosts1
+----
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldPrvdRes2Layer
+ java -Djava.net.useSystemProxies=true -jar sprcldPrvdRes2Layer-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://localhost:8011/postprov1/getPosts1
+----
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldWeb3
+ java -Djava.net.useSystemProxies=true -jar sprcldWeb3-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://localhost:19030/post/getPosts1
+----
 
 
 遇到一个问题，firefox在自动格式化json数据时，竟然丢失long的精度，像是把long转为double然后四舍五入为long，然后个位的精度丢掉了。

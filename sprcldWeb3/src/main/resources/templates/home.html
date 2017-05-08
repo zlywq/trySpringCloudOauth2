@@ -1,0 +1,272 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	>
+	
+	<head>
+		<meta charset="utf-8"/>
+		<title>spring cloud SrvProvider2Layer Home</title>
+	</head> 
+	<body>
+	
+	
+	<div th:if="${srvTimeStr}" >
+		srvTimeStr:	<span th:text="${srvTimeStr}" ></span>
+	</div>
+	<div th:if="${username}" >
+		username:	<span th:text="${username}" ></span>
+	</div>
+	
+
+	<P><a href="/throwerr0">/throwerr0</a></P>
+	<P><a href="/tmptest/getsome_json">/tmptest/getsome_json</a></P>
+	
+	<P><a href="logreg/info">logreg/info</a> </P>
+	
+	
+	<hr/>
+	<hr/>
+	<hr/>
+	<h3>sprcldsrv-provider1</h3>
+
+	<br /><a href="/postprov1/instance-info">rest instance-info</a>
+	<br /><a href="/postprov1/usert1">rest sprcldsrv-provider1 usert1</a>
+	
+	<br /><a href="/postprov1/getPosts1">rest sprcldsrv-provider1 getPosts1</a>
+	<br /><a href="/postprov1/getPosts2">rest sprcldsrv-provider1 getPosts2</a>
+
+	<br /><a href="/postprov1/postid/{postId}">rest sprcldsrv-provider1 /postid/{postId}</a>
+	<br /><a href="/postprov1/postid2/{postId}">rest sprcldsrv-provider1 /postid2/{postId}</a>
+
+	<div>
+	    <h2>insert post by inner rest sprcldsrv-provider1</h2>
+		<form  action="/postprov1/insert" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>userId:</td><td><input type='text' name='userId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="insert post by inner rest sprcldsrv-provider1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>udpate post by inner rest sprcldsrv-provider1</h2>
+		<form  action="/postprov1/update" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="udpate post by inner rest sprcldsrv-provider1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>delete post by inner rest sprcldsrv-provider1</h2>
+		<form  action="/postprov1/delete" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	        <tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="delete post by inner rest sprcldsrv-provider1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+
+	<hr/>
+	<hr/>
+	<hr/>
+	<h3>sprcld-prvdres1</h3>
+	
+	<br /><a href="/postprvdres1/getPosts1">rest sprcld-prvdres1 getPosts1</a>
+	<br /><a href="/postprvdres1/getPosts2">rest sprcld-prvdres1 getPosts2</a>
+
+	<br /><a href="/postprvdres1/postid/{postId}">rest sprcld-prvdres1 /postid/{postId}</a>
+	<br /><a href="/postprvdres1/postid2/{postId}">rest sprcld-prvdres1 /postid2/{postId}</a>
+
+	<div>
+	    <h2>insert post by inner rest sprcld-prvdres1</h2>
+		<form  action="/postprvdres1/insert" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>userId:</td><td><input type='text' name='userId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="insert post by inner rest sprcld-prvdres1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>udpate post by inner rest sprcld-prvdres1</h2>
+		<form  action="/postprvdres1/update" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="udpate post by inner rest sprcld-prvdres1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>delete post by inner rest sprcld-prvdres1</h2>
+		<form  action="/postprvdres1/delete" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	        <tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="delete post by inner rest sprcld-prvdres1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	
+	
+	<hr/>
+	<hr/>
+	<hr/>
+	<h3>sprcldsrv-provider2layer l1</h3>
+	
+	<br /><a href="/postprvdres2l1/getPosts1">rest sprcldsrv-provider2layer l1 getPosts1</a>
+	<br /><a href="/postprvdres2l1/getPosts2">rest sprcldsrv-provider2layer l1 getPosts2</a>
+
+	<br /><a href="/postprvdres2l1/postid/{postId}">rest sprcldsrv-provider2layer l1 /postid/{postId}</a>
+	<br /><a href="/postprvdres2l1/postid2/{postId}">rest sprcldsrv-provider2layer l1 /postid2/{postId}</a>
+
+	<div>
+	    <h2>insert post by inner rest sprcldsrv-provider2layer l1</h2>
+		<form  action="/postprvdres2l1/insert" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>userId:</td><td><input type='text' name='userId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="insert post by inner rest sprcldsrv-provider2layer l1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>udpate post by inner rest sprcldsrv-provider2layer l1</h2>
+		<form  action="/postprvdres2l1/update" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="udpate post by inner rest sprcldsrv-provider2layer l1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>delete post by inner rest sprcldsrv-provider2layer l1</h2>
+		<form  action="/postprvdres2l1/delete" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	        <tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="delete post by inner rest sprcldsrv-provider2layer l1"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	
+	
+	<hr/>
+	<hr/>
+	<hr/>
+	<h3>sprcldsrv-provider2layer l2</h3>
+	
+	<br /><a href="/postprvdres2l2/getPosts1">rest sprcldsrv-provider2layer l2 getPosts1</a>
+	<br /><a href="/postprvdres2l2/getPosts2">rest sprcldsrv-provider2layer l2 getPosts2</a>
+
+	<br /><a href="/postprvdres2l2/postid/{postId}">rest sprcldsrv-provider2layer l2 /postid/{postId}</a>
+	<br /><a href="/postprvdres2l2/postid2/{postId}">rest sprcldsrv-provider2layer l2 /postid2/{postId}</a>
+
+	<div>
+	    <h2>insert post by inner rest sprcldsrv-provider2layer l2</h2>
+		<form  action="/postprvdres2l2/insert" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>userId:</td><td><input type='text' name='userId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="insert post by inner rest sprcldsrv-provider2layer l2"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>udpate post by inner rest sprcldsrv-provider2layer l2</h2>
+		<form  action="/postprvdres2l2/update" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	      	<tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td>title:</td><td><input type='text' name='title' value=''/></td></tr>
+	        <tr><td>content:</td><td><textarea name="content" cols="100" rows="5"></textarea></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="udpate post by inner rest sprcldsrv-provider2layer l2"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	<div>
+	    <h2>delete post by inner rest sprcldsrv-provider2layer l2</h2>
+		<form  action="/postprvdres2l2/delete" method="POST" target="_blank">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	      <table>
+	        <tr><td>postId:</td><td><input type='text' name='postId' value=''/></td></tr>
+	        <tr><td colspan='2'></td></tr>
+	        <tr><td colspan='2'><input type="submit" value="delete post by inner rest sprcldsrv-provider2layer l2"/></td></tr>
+	      </table>
+	    </form>
+	</div>
+	
+	
+	<hr/>
+	<hr/>
+	<hr/>
+	
+	
+	
+	<div>
+	<h3>actuator</h3>
+
+	<br /><a href="actuator/autoconfig">autoconfig</a>
+<br /><a href="actuator/configprops">configprops</a>
+<br /><a href="actuator/beans">beans</a>
+<br /><a href="actuator/dump">dump</a>
+<br /><a href="actuator/env">env</a>
+<br /><a href="actuator/env/{name}">env/{name}</a>
+<br /><a href="actuator/health">health</a>
+<br /><a href="actuator/info">info</a>
+<br /><a href="actuator/mappings">mappings</a>
+<br /><a href="actuator/metrics">metrics</a>
+<br /><a href="actuator/metrics/{name}">metrics/{name}</a>
+<br /><a href="actuator/shutdown">shutdown</a>
+<br /><a href="actuator/trace">trace</a>
+	
+	</div>
+	
+	
+	<div>
+	    <h2>logout by post</h2>
+		<form action="/logout" method="POST" >
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			<table>
+				   	
+	        	<tr><td colspan='2'><input type="submit" value="logout by post" /></td></tr>
+			</table>
+	    </form>
+	    <br />
+		<a href="/logout">登出</a>
+			<a href="/logout?needJson=true">登出json</a>
+	</div>
+	<br/>
+	
+	
+	</body>
+</html>

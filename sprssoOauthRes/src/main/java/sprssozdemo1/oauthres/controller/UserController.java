@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import sprssozdemo1.libCommon.domain.UserInfo;
 import sprssozdemo1.libCommon.util.Const;
 import sprssozdemo1.libCommon.util.Util1;
 import sprssozdemo1.libCommon.util.UtilMsg;
@@ -19,9 +20,9 @@ public class UserController {
 	UserInfoService userInfoService;
 	
 	@RequestMapping("/user")
-    public Map<String, Object> user(Principal puser) {
+    public UserInfo user(Principal puser) {
 		long userIdSession = Util1.getUserIdInSso(puser);
-		Map<String, Object> mapData = userInfoService.getUserDataById(userIdSession);
+		UserInfo mapData = userInfoService.getById(userIdSession);
 		return mapData;
     }
 	
