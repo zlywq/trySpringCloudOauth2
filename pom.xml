@@ -40,12 +40,15 @@
         
         
         <module>sprcldEurekaServerSimple</module>
+        <module>sprcldZuulProxySimple</module>
+        
         <module>sprcldSrvProvider1</module>
         <module>sprcldPrvdRes1</module>
         
         <module>sprcldSrvProvider2Layer</module>
 		<module>sprcldPrvdRes2Layer</module>
 		<module>sprcldWeb3</module>
+		<module>sprcldWeb4InnerZuul</module>
 
 		
         

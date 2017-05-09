@@ -35,12 +35,18 @@ sprcldWeb3作为一个普通的sso的web站点，在内部调用sprcldPrvdRes1�
    OAuth2ProxyAutoConfiguration.AuthenticationHeaderFilterConfiguration matched:
       - @ConditionalOnClass found required class 'org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
 
-
+这个奇怪问题在sprcldWeb4InnerZuul那里也存在。也得加入对于sprssoLibWebSec1的依赖。不过问题细化了一些。
+    在这个项目中发现，zuul的代理功能是有的，只是传递oauth的认证token的区别。
+    如果不加入对于sprssoLibWebSec1的依赖，是可以访问没有被oauth保护的rest服务的，只是不能访问被oauth resource server里面的被保护的rest服务(错误信息Full authentication is required to access this resource)。
+    加入依赖后，后者才可以访问。
+    待研究TODO
 
 ---------------------------------------------------------
 
 
 ---------------------------------------------------------
+
+
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprssoLogin
 del sprssoLogin-1.0-SNAPSHOT.jar
@@ -72,7 +78,23 @@ copy D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target\sprssoWeb2-1.0-SNAPSHOT.
 del application1.yml application.yml 
 copy D:\zly2\try\trySprBoot\trySprSso\sprssoWeb2\target\classes\application.yml .\application1.yml
 dir
+--------
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldEurekaServerSimple
+del sprcldEurekaServerSimple-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldEurekaServerSimple\target\sprcldEurekaServerSimple-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldEurekaServerSimple\target\classes\application.yml .\application1.yml
+dir
 --
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldZuulProxySimple
+del sprcldZuulProxySimple-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldZuulProxySimple\target\sprcldZuulProxySimple-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldZuulProxySimple\target\classes\application.yml .\application1.yml
+dir
+--------
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldSrvProvider1
 del sprcldSrvProvider1-1.0-SNAPSHOT.jar
@@ -113,7 +135,14 @@ del application1.yml application.yml
 copy D:\zly2\try\trySprBoot\trySprSso\sprcldWeb3\target\classes\application.yml .\application1.yml
 dir
 --
-//sprcldEurekaServerSimple
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldWeb4InnerZuul
+del sprcldWeb4InnerZuul-1.0-SNAPSHOT.jar
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldWeb4InnerZuul\target\sprcldWeb4InnerZuul-1.0-SNAPSHOT.jar .\
+del application1.yml application.yml 
+copy D:\zly2\try\trySprBoot\trySprSso\sprcldWeb4InnerZuul\target\classes\application.yml .\application1.yml
+dir
+--
 
 
 --------------------------
@@ -147,6 +176,11 @@ d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldEurekaServerSimple
 java -jar sprcldEurekaServerSimple-1.0-SNAPSHOT.jar --spring.config.name=application1
 http://discovery:8761/
+----
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldZuulProxySimple
+java -jar sprcldZuulProxySimple-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://localhost:8050/
 
 ----
 d:
@@ -188,9 +222,13 @@ http://localhost:9121/postprov1/getPosts1
 d:
 cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldWeb3
  java -Djava.net.useSystemProxies=true -jar sprcldWeb3-1.0-SNAPSHOT.jar --spring.config.name=application1
-http://localhost:19030/post/getPosts1
+http://localhost:19030/
 ----
-
+d:
+cd D:\zly2\try\trySprBoot\trySprSso\tmp\sprcldWeb4InnerZuul
+ java -Djava.net.useSystemProxies=true -jar sprcldWeb4InnerZuul-1.0-SNAPSHOT.jar --spring.config.name=application1
+http://localhost:19040/
+----
 
 遇到一个问题，firefox在自动格式化json数据时，竟然丢失long的精度，像是把long转为double然后四舍五入为long，然后个位的精度丢掉了。
 对比google浏览器，显示原始数据，无此问题。后来在firefox中右键，查看源代码，也是原始数据了。

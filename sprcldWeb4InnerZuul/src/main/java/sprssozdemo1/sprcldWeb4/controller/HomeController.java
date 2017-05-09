@@ -1,4 +1,4 @@
-package sprssozdemo1.sprcldWeb3.controller;
+package sprssozdemo1.sprcldWeb4.controller;
 
 import java.security.Principal;
 import java.text.DateFormat;
@@ -28,11 +28,6 @@ public class HomeController {
 	@Value("${myOauthServer.logoutUrl}")
 	String myOauthServer_logoutUrl;
 	
-	@Value("${zuulProxyUrl}")
-	String zuulProxyUrl;
-	
-	
-
 
     @RequestMapping("/")
     public String home(Locale locale, Model model, Principal puser){
@@ -51,23 +46,10 @@ public class HomeController {
         return "home";
     }
     
-    @RequestMapping(value="/apidemoRestRibbon")
-    public String apidemoRestRibbon(){
-        return "apidemoRestRibbon";
-    }
-    @RequestMapping(value="/apidemoFeign")
-    public String apidemoFeign(){
-        return "apidemoFeign";
-    }
-    
-    /*
-     * 目前尚不支持传oauth的token。只对没有安全措施的rest api能够成功访问。看来只能像本项目中的代码调用去访问那些被保护的rest api了。
-     * 参考sprcldWeb4InnerZuul，使用内嵌zuul的方式，此时能够传oauth的token访问oauth resource server里面的被保护的rest api。
-     */
-    @RequestMapping(value="/apiOuterZuul")
-    public String apidemoZuul(Model model){
-    	model.addAttribute("zuulProxyUrl", zuulProxyUrl);
-        return "apiOuterZuul";
+    @RequestMapping(value="/innerZuul")
+    public String innerZuul(Model model){
+    	model.addAttribute("zuulProxyUrl", "");
+        return "innerZuul";
     }
 
     @RequestMapping(value="/deny")
