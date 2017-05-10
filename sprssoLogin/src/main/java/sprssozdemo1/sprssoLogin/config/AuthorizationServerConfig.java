@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 import sprssozdemo1.libSpr.cfg.DataSourceConfiguration1;
 import sprssozdemo1.libSpr.service.UserInfoService;
 import sprssozdemo1.sprssoLogin.oauth.CustomJdbcClientDetailsService;
+import sprssozdemo1.sprssoLogin.sprsec.MyUserDetailsService;
 
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -44,10 +45,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.accessTokenConverter(jwtAccessTokenConverter())
-        //.authenticationManager(getAuthenticationManager())
+        
+        //如果要支持grant_type=password，需要设置authenticationManager，并且这个bean需要设置userDetailsService。
+        //但看来这个authenticationManager已经在别处生成配置好了，这里只需要简单使用即可。
+        .authenticationManager(authenticationManager) 
+        //.userDetailsService(myUserDetailsService)
         ;
     }
-    
+    @Autowired
+    private AuthenticationManager authenticationManager;
+//    @Autowired
+//    MyUserDetailsService myUserDetailsService;
 
     @Autowired
     @Qualifier("authDataSource") 
@@ -87,27 +95,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     
     
-//    @Bean
-//    public AuthenticationManager getAuthenticationManager(){
-//    	OAuth2AuthenticationManager manager = new OAuth2AuthenticationManager();
-//    	
-//
-//    	//CustomJdbcClientDetailsService
-//    	/*
-//create table sql and insert table sql ......
-//
-//new ClientDetailsService(){
-//			@Override
-//			public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//    	}
-//    	 */
-//    	manager.setClientDetailsService( new CustomJdbcClientDetailsService...);
-//    	
-//    	return manager;
-//    }
-//    
 
 }

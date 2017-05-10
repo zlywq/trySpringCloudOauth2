@@ -1,4 +1,6 @@
 
+
+
 关于oauth2 sso主要参考了 深入实践 Spring Boot20161101 ，以及其他spring官方例子
 关于spring cloud主要参考的是 使用SpringCloud与Docker实战微服务 http://git.oschina.net/itmuch/spring-cloud-book  配套代码：http://git.oschina.net/itmuch/spring-cloud-study 
 
@@ -232,6 +234,44 @@ http://localhost:19040/
 
 遇到一个问题，firefox在自动格式化json数据时，竟然丢失long的精度，像是把long转为double然后四舍五入为long，然后个位的精度丢掉了。
 对比google浏览器，显示原始数据，无此问题。后来在firefox中右键，查看源代码，也是原始数据了。
+
+
+
+
+
+
+
+
+有关使用curl，通过grant_type=password方式。一些实用命令如下。
+curl --cookie-jar oauthtoken1Cookie1.txt --dump-header oauthtoken1Header1.txt --output oauthtoken1json1.txt --url http://localhost:8080/oauth/token -X POST -u ssoclient:ssosecret -d "grant_type=password&username=bbb&password=111" 
+    OK.以password的方式从oauth2 server请求token。
+    没有cookie返回
+    //{"access_token":"a52f2d82-d46b-45e9-8073-31ec33499af9","token_type":"bearer","refresh_token":"0aed0ab3-408d-4c11-9197-99e8e1e0243d","expires_in":38858,"scope":"read write"}
+    {"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3NvY2xpZW50LXJlc291cmNlIl0sInVzZXJfbmFtZSI6IjU2OTMwNzA5NDQwNzUzNjY0Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwib3BlbmlkIl0sImV4cCI6MTQ5NDQ0Mzk1NywiYXV0aG9yaXRpZXMiOlsiQUNUVUFUT1IiLCJST0xFX1VTRVIiXSwianRpIjoiYTQyOGQzNDMtZDUwYi00ZDI5LWIyNmUtMzg0OTM4OWEyZjEzIiwiY2xpZW50X2lkIjoic3NvY2xpZW50In0.GK7faqz2lgDx0tVuuYqocFWM2lvmxuZj-Y5o_hOw4rhTI9txZV1TJBMSrB2DPMMYmLsXpHhkt9QHMonSepPqPyoX1UCeKkYLu1uex1AqJfyOOTv8HEfnpsaJVTsxkSSHbC5Ycv-xuHyw4Tc03PYgrRwCA4xgdAs929BHzck-0gD93hWnSQzpc1N8zOa394FeehR8ysMZMWgQbXisx8U7UDsuXNj5S7952l2QNbtZ87u2BNVdPIang96O32PRqKWmTMZ2thbzKoSMNTNU_ox1zn2FUgBKrB312ZSgW9YIpCc95GL6G5kNQu0-7eCuGOZnNnUBfBJ_1b6Nj6HKg5ruHA"
+,"token_type":"bearer"
+,"refresh_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3NvY2xpZW50LXJlc291cmNlIl0sInVzZXJfbmFtZSI6IjU2OTMwNzA5NDQwNzUzNjY0Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwib3BlbmlkIl0sImF0aSI6ImE0MjhkMzQzLWQ1MGItNGQyOS1iMjZlLTM4NDkzODlhMmYxMyIsImV4cCI6MTQ5Njk5Mjc1NywiYXV0aG9yaXRpZXMiOlsiQUNUVUFUT1IiLCJST0xFX1VTRVIiXSwianRpIjoiNjllOGEzZDQtY2VhMS00MDE5LWI0NDAtYWM1YWJhNjBhYWNjIiwiY2xpZW50X2lkIjoic3NvY2xpZW50In0.SF_qz56-oKGpX635sEuUEL9QlnxDChjWOjRZ4x6gjSTIQHeY3s6JpSUI5ZbRqHEFsPHsF7vj3fsKP-8vsN151RNxQZb99L6BvYlucxO1GseE2GHWONYFytxoBjfzPCx-WT8x1F02sldbJr0wUS-WEYhxcGBJSfes8Np_NuujXZuZgfUdCozFYGDbCM1uJTM66A-MEsU-IiBQzQj_M3fiISWy6KYcRUkM8gJdC1GU1eu54LVq_ZA9CBn3TmBRU0Q4jbTk_KjNqJEI3XY0_A9zRtkGNmVOOnmQ7U5avSoXe6SY0A7xJCmQ37-HhHIxABOI8JMfz95YaQIT7FwJ650CTA"
+,"expires_in":43199,"scope":"read write openid","jti":"a428d343-d50b-4d29-b26e-3849389a2f13"}
+
+curl --dump-header oauthResdata1Header1.txt --output oauthResdata1json1.txt --url http://localhost:9110/post/getPosts1?access_token=notLongTokenOrVeryLongToken
+    OK.访问由oauth2 resource server保护的rest api。
+curl --dump-header oauthResZuul1Header1.txt --output oauthResZuul1json1.txt --url http://localhost:8050/sprcld-prvdres1/post/getPosts1?access_token=notLongTokenOrVeryLongToken
+    OK.访问由oauth2 resource server保护的rest api，前面有zuul代理。
+curl --dump-header oauthServer1Header1.txt --output oauthServer1.html --url http://localhost:8080/?access_token=notLongTokenOrVeryLongToken
+    FAIL.使用token访问自己的oauth2 login server，重定向到login页面。
+
+这里的access_token是显式放在url中的。另外，根据fiddler的抓包，(至少bearer类型的)access_token是放在header里的，
+形如 Authorization: bearer VeryLongToken。
+
+关于调试时使用抓包工具fiddler。目前在windows7下试验OK。目前使用-Djava.net.useSystemProxies=true或System.setProperty("java.net.useSystemProxies", "true");是可以让程序里的http走代理的。
+
+
+
+
+
+
+
+
+
 
 
 
